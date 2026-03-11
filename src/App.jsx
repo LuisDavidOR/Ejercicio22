@@ -4,13 +4,13 @@ import { calcularTiempo } from './logica/calculotiempo'
 
 function App() {
   const [Distancia, setDistancia] = useState("")
-  const [Tiempo, setTiempo] = useState("")
+  const [Tiempo, setTiempo] = useState(null)
   const [Velocidad, setVelocidad] = useState("")
 
   const manejarCalculo = () => {
     try {
       const resultado = calcularTiempo(Number(Distancia), Number(Velocidad))
-      setTiempo(resultado.toFixed(2))
+      setTiempo(resultado)
     } catch (error) {
       alert(error.message)
     }
@@ -44,7 +44,7 @@ function App() {
 
       {Tiempo && (
         <div className="resultado">
-          Tiempo estimado de llegada: {Tiempo} horas
+          Tiempo estimado de llegada: {Tiempo.horas} horas y {Tiempo.minutos} minutos
         </div>
       )}
     </div>
